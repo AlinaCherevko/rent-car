@@ -1,0 +1,11 @@
+.filter {
+  width: 360px;
+}
+.selector {
+  width: 360px;
+  height: 56px;
+  border-radius: 10px;
+}
+.location {
+  margin-bottom: 8px;
+}

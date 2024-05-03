@@ -13,8 +13,8 @@ function App() {
       <Suspense>
         <Routes>
           <Route path="/" element={<Home />} />;
-          <Route path="/contacts" element={<Catalog />} />;
-          <Route path="/login" element={<Favorite />} />
+          <Route path="/catalog" element={<Catalog />} />;
+          <Route path="/favorite" element={<Favorite />} />
         </Routes>
       </Suspense>
     </Layout>
