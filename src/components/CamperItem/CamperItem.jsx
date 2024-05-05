@@ -15,10 +15,10 @@ import DetailsModal from "../DetailsModal/DetailsModal";
 
 import css from "./CamperItem.module.css";
 import { useDispatch } from "react-redux";
-import { addFavorite } from "../../store/catalogSlice";
+import { addFavorite, deleteFavorite } from "../../store/catalogSlice";
 
 const CamperItem = ({ data }) => {
-  //const [addToFavorite, setAddToFavorite] = useState();
+  const [isFavorite, setIsFavorite] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const dispatch = useDispatch();
 
@@ -31,7 +31,7 @@ const CamperItem = ({ data }) => {
   };
 
   const {
-    //_id,
+    _id,
     name,
     price,
     rating,
@@ -45,7 +45,13 @@ const CamperItem = ({ data }) => {
   } = data;
 
   const handleLikeClick = () => {
-    dispatch(addFavorite({ data }));
+    if (isFavorite) {
+      dispatch(deleteFavorite(_id));
+      setIsFavorite(false);
+    } else {
+      dispatch(addFavorite({ data }));
+      setIsFavorite(true);
+    }
   };
   return (
     <>

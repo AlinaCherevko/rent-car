@@ -1,22 +1,21 @@
 //import React from "react";
 import { useSelector } from "react-redux";
 import { favoritesCatalog } from "../../store/catalogSlice.selectors";
-import css from "./FavoritList.module.css";
 import CamperItem from "../CamperItem/CamperItem";
+import css from "./FavoritList.module.css";
 
 function FavoritList() {
-  const favoritesData = useSelector(favoritesCatalog);
-  console.log(favoritesData);
+  const favorites = useSelector(favoritesCatalog);
+  console.log(favorites);
 
   return (
-    <div>
-      <ul className={css.camperList}>
-        {Array.isArray(favoritesData) &&
-          favoritesData.map((data) => (
-            <CamperItem key={data._id} data={data}></CamperItem>
-          ))}
-      </ul>
-    </div>
+    <ul className={css.camperList}>
+      {favorites.length > 0 ? (
+        favorites.map(({ data }) => <CamperItem key={data._id} data={data} />)
+      ) : (
+        <p>No one favorite </p>
+      )}
+    </ul>
   );
 }
 

@@ -73,6 +73,7 @@ const favoritesSlice = createSlice({
       state.favorites = state.favorites.filter(
         (item) => item._id !== action.payload
       );
+      console.log(action.payload);
     },
   },
 });

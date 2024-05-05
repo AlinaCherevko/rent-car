@@ -15,6 +15,20 @@ const Home = () => {
         option of short-term rentals (from 2 days to several weeks) and are
         ready to offer long-term rentals from several weeks.
       </p>
+      <ul className={css.photoList}>
+        <li>
+          <img src="../../../public/img/Container 1.jpg" alt="photo1" />
+        </li>
+        <li>
+          <img src="../../../public/img/Container 2.jpg" alt="photo2" />
+        </li>
+        <li>
+          <img src="../../../public/img/Container 3.jpg" alt="photo3" />
+        </li>
+        <li>
+          <img src="../../../public/img/Container 4.jpg" alt="photo4" />
+        </li>
+      </ul>
     </section>
   );
 };
