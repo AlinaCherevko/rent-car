@@ -11,25 +11,41 @@ import css from "./CamperList.module.css";
 
 export default function CamperList() {
   const [page, setPage] = useState(1);
-  const [isVisibleLoadMoreBtn, setIsVisibleLoadMoreBtn] = useState(false);
-
+  const [isVisibleLoadMoreBtn, setIsVisibleLoadMoreBtn] = useState(true);
+  const perPage = 4;
   const dispatch = useDispatch();
   const catalogData = useSelector(selectDataCatalog);
   //const isLoading = useSelector(selectIsLoading);
 
+  const handleClick = () => {
+    setPage((prevState) => prevState + 1);
+    console.log(catalogData.length);
+  };
   useEffect(() => {
-    dispatch(apiGetCatalog());
-  }, [dispatch]);
+    if (catalogData.length === 0 || catalogData.length / perPage < page) {
+      setIsVisibleLoadMoreBtn(false);
+    } else {
+      setIsVisibleLoadMoreBtn(true);
+    }
+  }, [catalogData, page]);
 
-  //console.log(catalogData);
+  useEffect(() => {
+    dispatch(apiGetCatalog(page));
+  }, [dispatch, page]);
 
   return (
-    <>
+    <div className={css.listWrapper}>
       <ul className={css.camperList}>
-        {catalogData.map((data) => (
-          <CamperItem key={data._id} data={data}></CamperItem>
-        ))}
+        {Array.isArray(catalogData) &&
+          catalogData.map((data) => (
+            <CamperItem key={data._id} data={data}></CamperItem>
+          ))}
       </ul>
-    </>
+      {isVisibleLoadMoreBtn && (
+        <button onClick={handleClick} className={css.btn}>
+          Load more
+        </button>
+      )}
+    </div>
   );
 }

@@ -1,7 +1,7 @@
 .camperItem {
   display: flex;
   width: 840px;
-  height: 310px;
+  min-height: 310px;
   gap: 24px;
   border: 1px solid rgba(16, 24, 40, 0.2);
   border-radius: 20px;

@@ -1,0 +1,81 @@
+.modal {
+  position: relative;
+  width: 900px;
+  height: 640px;
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 40px;
+  overflow: auto;
+}
+.name {
+  margin-bottom: 10px;
+}
+.price {
+  margin-bottom: 24px;
+}
+.locationWrapper {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.location {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.ratingWrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.starIcon {
+  fill: #ffc531;
+}
+.photoList {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.photoItem {
+  width: 290px;
+  height: 310px;
+}
+.closeBtn {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  cursor: pointer;
+  background-color: transparent;
+}
+.closeIcon {
+  width: 36px;
+  height: 36px;
+}
+.img {
+  width: 290px;
+  height: 310px;
+  border-radius: 10px;
+}
+.linkWrapper {
+  display: flex;
+  gap: 40px;
+
+  border-bottom: 1px solid rgba(16, 24, 40, 0.2);
+}
+.active {
+  font-size: 20px;
+  line-height: 24px;
+  padding-bottom: 24px;
+  color: #000;
+  border-bottom: 4px solid #e44848;
+}
+.description {
+  margin-bottom: 44px;
+  font-size: 16px;
+  line-height: 24px;
+}
+.link {
+  font-size: 20px;
+  line-height: 24px;
+  color: #000;
+}

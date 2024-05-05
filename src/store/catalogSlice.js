@@ -7,6 +7,7 @@ export const $advertsInstance = axios.create({
 
 const initialState = {
   catalog: [],
+
   status: "idle",
   isLoading: false,
   error: null,
@@ -14,9 +15,11 @@ const initialState = {
 
 export const apiGetCatalog = createAsyncThunk(
   "catalog/apiGetCatalog",
-  async (_, thunkApi) => {
+  async (page, thunkApi) => {
     try {
-      const { data } = await $advertsInstance.get("/adverts");
+      const { data } = await $advertsInstance.get(
+        `/adverts?page=${page}&limit=4`
+      );
       console.log(data);
       return data;
     } catch (error) {
@@ -35,7 +38,7 @@ const catalogSlice = createSlice({
   extraReducers: (builder) =>
     builder
 
-      //Get Contact
+      //Get Catalog
       .addCase(apiGetCatalog.pending, (state) => {
         state.status = "pending";
         state.isLoading = true;
@@ -44,7 +47,7 @@ const catalogSlice = createSlice({
       .addCase(apiGetCatalog.fulfilled, (state, action) => {
         state.status = "success";
         state.isLoading = false;
-        state.catalog = action.payload;
+        state.catalog = [...state.catalog, ...action.payload];
       })
       .addCase(apiGetCatalog.rejected, (state, action) => {
         state.status = "error";

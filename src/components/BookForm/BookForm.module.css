@@ -1,0 +1,55 @@
+.btn {
+  background-color: #e44848;
+  padding: 16px 60px;
+  color: #fff;
+  border-radius: 200px;
+  margin-top: 24px;
+}
+.btn:hover {
+  background-color: #d84343;
+}
+.title {
+  margin-bottom: 8px;
+}
+.description {
+  margin-bottom: 24px;
+}
+.formWrapper {
+  width: 400px;
+  border: 1px solid rgba(16, 24, 40, 0.2);
+  border-radius: 10px;
+  padding: 24px;
+}
+.input {
+  width: 400px;
+  height: 56px;
+  border-radius: 10px;
+  padding: 0;
+  border: none;
+  background-color: #f2f4f7;
+}
+.input::placeholder,
+.inputComment::placeholder {
+  padding-left: 18px;
+}
+.formDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.inputComment {
+  width: 400px;
+  height: 114px;
+  border-radius: 10px;
+  padding: 0;
+  border: none;
+  background-color: #f2f4f7;
+}
+.inputError {
+  border: 1px solid #d84343;
+  color: #d84343;
+}
+.errorNameMessage {
+  color: #d84343;
+  font-size: 12px;
+}
