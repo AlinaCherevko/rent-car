@@ -3,3 +3,17 @@
   gap: 64px;
   padding-top: 20px;
 }
+.listWrapper {
+  display: flex;
+  flex-direction: column;
+}
+.btn {
+  padding: 16px 32px;
+  background-color: transparent;
+  border: 1px solid rgba(16, 24, 40, 0.2);
+  border-radius: 200px;
+  margin: 50px auto 0;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+}

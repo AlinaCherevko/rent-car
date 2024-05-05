@@ -1,0 +1,17 @@
+.title {
+  background: linear-gradient(to right, #f51515, #f8cb5a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-top: 12px;
+  font-size: 48px;
+  line-height: 50px;
+}
+.preTitle {
+  margin-top: 40px;
+}
+.afterTitle {
+  margin-top: 40px;
+  font-size: 20px;
+  line-height: 24px;
+}

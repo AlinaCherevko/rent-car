@@ -21,3 +21,11 @@ export const selectIsLoading = createSelector(
   selectCatalog,
   (catalog) => catalog.isLoading
 );
+
+const selectFavorites = (state) => state.favorites;
+
+export const favoritesCatalog = createSelector(
+  selectFavorites,
+  (favorites) => favorites.favorites
+);
+console.log();

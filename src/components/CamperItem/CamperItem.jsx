@@ -14,9 +14,13 @@ import Modal from "../Modal/Modal";
 import DetailsModal from "../DetailsModal/DetailsModal";
 
 import css from "./CamperItem.module.css";
+import { useDispatch } from "react-redux";
+import { addFavorite } from "../../store/catalogSlice";
 
 const CamperItem = ({ data }) => {
+  //const [addToFavorite, setAddToFavorite] = useState();
   const [isVisible, setIsVisible] = useState(false);
+  const dispatch = useDispatch();
 
   const handleOpenModal = () => {
     setIsVisible(true);
@@ -27,6 +31,7 @@ const CamperItem = ({ data }) => {
   };
 
   const {
+    //_id,
     name,
     price,
     rating,
@@ -38,85 +43,93 @@ const CamperItem = ({ data }) => {
     gallery,
     reviews,
   } = data;
+
+  const handleLikeClick = () => {
+    dispatch(addFavorite({ data }));
+  };
   return (
     <>
-      <li className={css.camperItem}>
-        <div className={css.imageWrapper}>
-          <img className={css.image} src={gallery[0]} alt={name} />
-        </div>
-        <div className={css.textWrapper}>
-          <div className={css.nameWrapper}>
-            <div>
-              <h2 className={css.name}>{name}</h2>
+      {details && (
+        <li className={css.camperItem}>
+          <div className={css.imageWrapper}>
+            {Array.isArray(gallery) && (
+              <img className={css.image} src={gallery[0]} alt={name} />
+            )}
+          </div>
+          <div className={css.textWrapper}>
+            <div className={css.nameWrapper}>
+              <div>
+                <h2 className={css.name}>{name}</h2>
+              </div>
+              <div className={css.priceWrapper}>
+                <h2 className={css.price}>${price},00</h2>
+                <button className={css.likeBtn} onClick={handleLikeClick}>
+                  <FaRegHeart className={css.icon} />
+                </button>
+              </div>
             </div>
-            <div className={css.priceWrapper}>
-              <h2 className={css.price}>${price},00</h2>
-              <button className={css.likeBtn}>
-                <FaRegHeart className={css.icon} />
+            <div className={css.locationWrapper}>
+              <div className={css.ratingWrapper}>
+                <FaStar className={css.starIcon} />
+                <p>{rating}</p>
+                <p>({reviews.length} Reviews)</p>
+              </div>
+              <div className={css.location}>
+                <LuMapPin />
+                <p>{location}</p>
+              </div>
+            </div>
+            <div className={css.descriptionWrapper}>
+              <p>
+                The pictures shown here are example vehicles of the respective.
+              </p>
+            </div>
+            <div className={css.wrapper}>
+              <div className={css.buttonsWrapper}>
+                <div className={css.adultsWrapper}>
+                  <LuUsers />
+                  <span>{adults} adults</span>
+                </div>
+              </div>
+              <div className={css.buttonsWrapper}>
+                <div className={css.adultsWrapper}>
+                  <TbAutomaticGearbox />
+                  <span>{transmission}</span>
+                </div>
+              </div>
+              <div className={css.buttonsWrapper}>
+                <div className={css.adultsWrapper}>
+                  <MdOutlineLocalGasStation />
+                  <span>{engine}</span>
+                </div>
+              </div>
+              <div className={css.buttonsWrapper}>
+                <div className={css.adultsWrapper}>
+                  <TbToolsKitchen2 />
+                  <span>kitchen</span>
+                </div>
+              </div>
+              <div className={css.buttonsWrapper}>
+                <div className={css.adultsWrapper}>
+                  <IoBedOutline />
+                  <span>{details.beds} beds</span>
+                </div>
+              </div>
+              <div className={css.buttonsWrapper}>
+                <div className={css.adultsWrapper}>
+                  <LuWind />
+                  <span>AC</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <button onClick={handleOpenModal} className={css.btn}>
+                Show more
               </button>
             </div>
           </div>
-          <div className={css.locationWrapper}>
-            <div className={css.ratingWrapper}>
-              <FaStar className={css.starIcon} />
-              <p>{rating}</p>
-              <p>({reviews.length} Reviews)</p>
-            </div>
-            <div className={css.location}>
-              <LuMapPin />
-              <p>{location}</p>
-            </div>
-          </div>
-          <div className={css.descriptionWrapper}>
-            <p>
-              The pictures shown here are example vehicles of the respective.
-            </p>
-          </div>
-          <div className={css.wrapper}>
-            <div className={css.buttonsWrapper}>
-              <div className={css.adultsWrapper}>
-                <LuUsers />
-                <span>{adults} adults</span>
-              </div>
-            </div>
-            <div className={css.buttonsWrapper}>
-              <div className={css.adultsWrapper}>
-                <TbAutomaticGearbox />
-                <span>{transmission}</span>
-              </div>
-            </div>
-            <div className={css.buttonsWrapper}>
-              <div className={css.adultsWrapper}>
-                <MdOutlineLocalGasStation />
-                <span>{engine}</span>
-              </div>
-            </div>
-            <div className={css.buttonsWrapper}>
-              <div className={css.adultsWrapper}>
-                <TbToolsKitchen2 />
-                <span>kitchen</span>
-              </div>
-            </div>
-            <div className={css.buttonsWrapper}>
-              <div className={css.adultsWrapper}>
-                <IoBedOutline />
-                <span>{details.beds} beds</span>
-              </div>
-            </div>
-            <div className={css.buttonsWrapper}>
-              <div className={css.adultsWrapper}>
-                <LuWind />
-                <span>AC</span>
-              </div>
-            </div>
-          </div>
-          <div>
-            <button onClick={handleOpenModal} className={css.btn}>
-              Show more
-            </button>
-          </div>
-        </div>
-      </li>
+        </li>
+      )}
       {isVisible && (
         <Modal onClose={handleCloseModal}>
           <DetailsModal data={data} onClose={handleCloseModal} />

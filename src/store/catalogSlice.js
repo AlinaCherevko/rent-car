@@ -7,7 +7,7 @@ export const $advertsInstance = axios.create({
 
 const initialState = {
   catalog: [],
-
+  favorites: [],
   status: "idle",
   isLoading: false,
   error: null,
@@ -55,6 +55,29 @@ const catalogSlice = createSlice({
         state.error = action.payload;
       }),
 });
-
 // Редюсер слайсу
 export const catalogReducer = catalogSlice.reducer;
+
+const favoritesSlice = createSlice({
+  // Ім'я слайсу
+  name: "favorites",
+  // Початковий стан редюсера слайсу
+  initialState,
+  // Об'єкт редюсерів
+  reducers: {
+    addFavorite(state, action) {
+      state.favorites = [...state.favorites, action.payload];
+      console.log(state.favorites);
+    },
+    deleteFavorite(state, action) {
+      state.favorites = state.favorites.filter(
+        (item) => item._id !== action.payload
+      );
+    },
+  },
+});
+
+// Генератори екшенів
+export const { addFavorite, deleteFavorite } = favoritesSlice.actions;
+// Редюсер слайсу
+export const favoritesReducer = favoritesSlice.reducer;
