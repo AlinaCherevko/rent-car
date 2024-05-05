@@ -17,7 +17,7 @@ const Catalog = () => {
 
   const handleClick = () => {
     setPage((prevState) => prevState + 1);
-    console.log(catalogData.length);
+    console.log(catalogData);
   };
   useEffect(() => {
     if (catalogData.length === 0 || catalogData.length / perPage < page) {

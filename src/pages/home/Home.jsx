@@ -17,16 +17,16 @@ const Home = () => {
       </p>
       <ul className={css.photoList}>
         <li>
-          <img src="../../img/Container 1.jpg" alt="photo1" />
+          <img src="/src/img/Container 1.jpg" alt="photo1" />
         </li>
         <li>
-          <img src="../../img/Container 2.jpg" alt="photo2" />
+          <img src="/src/img/Container 2.jpg" alt="photo2" />
         </li>
         <li>
-          <img src="../../img/Container 3.jpg" alt="photo3" />
+          <img src="/src/img/Container 3.jpg" alt="photo3" />
         </li>
         <li>
-          <img src="../../img/Container 4.jpg" alt="photo4" />
+          <img src="/src/img/Container 4.jpg" alt="photo4" />
         </li>
       </ul>
     </section>
