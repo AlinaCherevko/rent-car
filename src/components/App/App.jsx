@@ -1,7 +1,7 @@
 import { Suspense, lazy } from "react";
 import Layout from "../Layout/Layout";
 //import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 const Home = lazy(() => import("../../pages/home/Home"));
 const Catalog = lazy(() => import("../../pages/catalog/Catalog"));
@@ -15,6 +15,7 @@ function App() {
           <Route path="/" element={<Home />} />;
           <Route path="/catalog" element={<Catalog />} />;
           <Route path="/favorite" element={<Favorite />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Suspense>
     </Layout>

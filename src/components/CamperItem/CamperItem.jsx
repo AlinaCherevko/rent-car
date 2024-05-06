@@ -14,22 +14,11 @@ import Modal from "../Modal/Modal";
 import DetailsModal from "../DetailsModal/DetailsModal";
 
 import css from "./CamperItem.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addFavorite, deleteFavorite } from "../../store/catalogSlice";
+import { favoritesCatalog } from "../../store/catalogSlice.selectors";
 
 const CamperItem = ({ data }) => {
-  const [isFavorite, setIsFavorite] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-  const dispatch = useDispatch();
-
-  const handleOpenModal = () => {
-    setIsVisible(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsVisible(false);
-  };
-
   const {
     _id,
     name,
@@ -44,13 +33,30 @@ const CamperItem = ({ data }) => {
     reviews,
   } = data;
 
+  const favorites = useSelector(favoritesCatalog);
+  console.log(favorites);
+
+  const isFavorite = favorites.some(({ data }) => data._id === _id);
+  console.log(isFavorite);
+
+  //const [isFavorite, setIsFavorite] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const dispatch = useDispatch();
+
+  const handleOpenModal = () => {
+    setIsVisible(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsVisible(false);
+  };
+
   const handleLikeClick = () => {
-    if (isFavorite) {
+    if (isFavorite === true) {
       dispatch(deleteFavorite(_id));
-      setIsFavorite(false);
-    } else {
+    }
+    if (isFavorite === false) {
       dispatch(addFavorite({ data }));
-      setIsFavorite(true);
     }
   };
   return (
