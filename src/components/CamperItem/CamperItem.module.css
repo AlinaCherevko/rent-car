@@ -30,6 +30,9 @@
   width: 24px;
   height: 24px;
 }
+.favorite {
+  color: #e44848;
+}
 .priceWrapper {
   display: flex;
   gap: 10px;

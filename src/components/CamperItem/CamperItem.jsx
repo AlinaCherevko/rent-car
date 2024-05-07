@@ -12,11 +12,11 @@ import { LuWind } from "react-icons/lu";
 import { useState } from "react";
 import Modal from "../Modal/Modal";
 import DetailsModal from "../DetailsModal/DetailsModal";
-
-import css from "./CamperItem.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addFavorite, deleteFavorite } from "../../store/catalogSlice";
 import { favoritesCatalog } from "../../store/catalogSlice.selectors";
+
+import css from "./CamperItem.module.css";
 
 const CamperItem = ({ data }) => {
   const {
@@ -34,10 +34,8 @@ const CamperItem = ({ data }) => {
   } = data;
 
   const favorites = useSelector(favoritesCatalog);
-  //console.log(favorites);
 
   const isFavorite = favorites.some(({ data }) => data._id === _id);
-  //console.log(isFavorite);
 
   const [isVisible, setIsVisible] = useState(false);
   const dispatch = useDispatch();
@@ -75,7 +73,11 @@ const CamperItem = ({ data }) => {
               <div className={css.priceWrapper}>
                 <h2 className={css.price}>${price},00</h2>
                 <button className={css.likeBtn} onClick={handleLikeClick}>
-                  <FaRegHeart className={css.icon} />
+                  <FaRegHeart
+                    className={
+                      isFavorite ? `${css.icon} ${css.favorite}` : css.icon
+                    }
+                  />
                 </button>
               </div>
             </div>
