@@ -20,7 +20,7 @@ export const apiGetCatalog = createAsyncThunk(
       const { data } = await $advertsInstance.get(
         `/adverts?page=${page}&limit=4`
       );
-      console.log(data);
+
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -67,13 +67,11 @@ const favoritesSlice = createSlice({
   reducers: {
     addFavorite(state, action) {
       state.favorites = [...state.favorites, action.payload];
-      console.log(state.favorites);
     },
     deleteFavorite(state, action) {
       state.favorites = state.favorites.filter(
-        (item) => item._id !== action.payload
+        ({ data }) => data._id !== action.payload
       );
-      console.log(action.payload);
     },
   },
 });

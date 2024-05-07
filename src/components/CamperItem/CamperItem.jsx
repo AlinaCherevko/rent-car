@@ -34,12 +34,11 @@ const CamperItem = ({ data }) => {
   } = data;
 
   const favorites = useSelector(favoritesCatalog);
-  console.log(favorites);
+  //console.log(favorites);
 
   const isFavorite = favorites.some(({ data }) => data._id === _id);
-  console.log(isFavorite);
+  //console.log(isFavorite);
 
-  //const [isFavorite, setIsFavorite] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const dispatch = useDispatch();
 
