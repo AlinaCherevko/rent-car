@@ -1,31 +1,9 @@
-import { createSelector } from "@reduxjs/toolkit";
+export const selectDataCatalog = (state) => state.catalog.catalog;
 
-const selectCatalog = (state) => state.catalog;
+export const selectStatus = (state) => state.catalog.status;
 
-export const selectDataCatalog = createSelector(
-  selectCatalog,
-  (catalog) => catalog.catalog
-);
+export const selectError = (state) => state.catalog.error;
 
-export const selectStatus = createSelector(
-  selectCatalog,
-  (catalog) => catalog.status
-);
+export const selectIsLoading = (state) => state.catalog.isLoading;
 
-export const selectError = createSelector(
-  selectCatalog,
-  (catalog) => catalog.error
-);
-
-export const selectIsLoading = createSelector(
-  selectCatalog,
-  (catalog) => catalog.isLoading
-);
-
-const selectFavorites = (state) => state.favorites;
-
-export const favoritesCatalog = createSelector(
-  selectFavorites,
-  (favorites) => favorites.favorites
-);
-console.log();
+export const favoritesCatalog = (state) => state.favorites.favorites;

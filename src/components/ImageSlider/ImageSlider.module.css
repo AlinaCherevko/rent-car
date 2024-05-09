@@ -1,0 +1,50 @@
+.imgContainer {
+  position: relative;
+  margin-top: 20px;
+}
+.sliderWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 700;
+}
+.img {
+  border-radius: 12px;
+}
+.leftArrow {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  z-index: 1;
+  cursor: pointer;
+  left: 400px;
+  fill: #fff;
+  width: 25px;
+  height: 25px;
+}
+.rightArrow {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  z-index: 1;
+  right: 400px;
+  cursor: pointer;
+  fill: #fff;
+  width: 25px;
+  height: 25px;
+}
+.dotList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+.dotItem {
+  color: #999999;
+  cursor: pointer;
+}
+.active {
+  color: #e44848;
+  cursor: pointer;
+}
