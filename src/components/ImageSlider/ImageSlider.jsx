@@ -36,7 +36,7 @@ function ImageSlider({ slides }) {
       <div className={css.sliderWrap}>
         <img
           className={css.img}
-          width="700px"
+          width="800px"
           src={slides[currentIndex].url}
           alt={slides[currentIndex].title}
         />
