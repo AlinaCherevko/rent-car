@@ -10,10 +10,9 @@ import {
 export default function CamperList({ catalogData }) {
   const locationFilter = useSelector(selectLocationFilter);
   const filteredDataByLocation = useSelector(selectFilterAdvertsByLocation);
-  console.log(filteredDataByLocation);
 
   const adverts = locationFilter !== "" ? filteredDataByLocation : catalogData;
-  console.log(locationFilter);
+
   return (
     <div className={css.listWrapper}>
       <ul className={css.camperList}>

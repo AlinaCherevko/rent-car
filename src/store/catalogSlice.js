@@ -28,20 +28,7 @@ export const apiGetCatalog = createAsyncThunk(
     }
   }
 );
-export const apiGetByLocation = createAsyncThunk(
-  "catalog/apiGetByLocation",
-  async ({ page, location }, thunkApi) => {
-    try {
-      const { data } = await $advertsInstance.get(
-        `/adverts?page=${page}&limit=4&location=${location}`
-      );
 
-      return data;
-    } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
-    }
-  }
-);
 const catalogSlice = createSlice({
   // Ім'я слайсу
   name: "advertsCatalog",
@@ -64,23 +51,6 @@ const catalogSlice = createSlice({
         state.catalog = [...state.catalog, ...action.payload];
       })
       .addCase(apiGetCatalog.rejected, (state, action) => {
-        state.status = "error";
-        state.isLoading = false;
-        state.error = action.payload;
-      })
-
-      //Get Data By Location
-      .addCase(apiGetByLocation.pending, (state) => {
-        state.status = "pending";
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(apiGetByLocation.fulfilled, (state, action) => {
-        state.status = "success";
-        state.isLoading = false;
-        state.catalog = [...state.catalog, ...action.payload];
-      })
-      .addCase(apiGetByLocation.rejected, (state, action) => {
         state.status = "error";
         state.isLoading = false;
         state.error = action.payload;

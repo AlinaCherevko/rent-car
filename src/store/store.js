@@ -16,13 +16,13 @@ import storage from "redux-persist/lib/storage";
 const favoritesConfig = {
   key: "favorites",
   storage,
-  whitelist: ["favorites"],
+  whitelist: ["favorites", "location"],
 };
 
 export const store = configureStore({
   reducer: {
     catalog: catalogReducer,
-    // favorites: favoritesReducer,
+
     favorites: persistReducer(favoritesConfig, favoritesReducer),
   },
   middleware: (getDefaultMiddleware) =>
