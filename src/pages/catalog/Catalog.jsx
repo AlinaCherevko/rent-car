@@ -12,7 +12,10 @@ const Catalog = () => {
   const [isVisibleLoadMoreBtn, setIsVisibleLoadMoreBtn] = useState(true);
   const perPage = 4;
   const dispatch = useDispatch();
+
+  //const locationFilter = useSelector(selectLocationFilter);
   const catalogData = useSelector(selectDataCatalog);
+  //console.log(locationFilter);
   //const isLoading = useSelector(selectIsLoading);
 
   const handleClick = () => {

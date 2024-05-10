@@ -1,13 +1,24 @@
 import PropTypes from "prop-types";
 import CamperItem from "../CamperItem/CamperItem";
 import css from "./CamperList.module.css";
+import { useSelector } from "react-redux";
+import {
+  selectFilterAdvertsByLocation,
+  selectLocationFilter,
+} from "../../store/catalogSlice.selectors";
 
 export default function CamperList({ catalogData }) {
+  const locationFilter = useSelector(selectLocationFilter);
+  const filteredDataByLocation = useSelector(selectFilterAdvertsByLocation);
+  console.log(filteredDataByLocation);
+
+  const adverts = locationFilter !== "" ? filteredDataByLocation : catalogData;
+  console.log(locationFilter);
   return (
     <div className={css.listWrapper}>
       <ul className={css.camperList}>
         {catalogData.length > 0 &&
-          catalogData.map((data) => (
+          adverts.map((data) => (
             <CamperItem key={data.name} data={data}></CamperItem>
           ))}
       </ul>

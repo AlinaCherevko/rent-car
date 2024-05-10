@@ -7,6 +7,7 @@ export const $advertsInstance = axios.create({
 
 const initialState = {
   catalog: [],
+  location: "",
   favorites: [],
   status: "idle",
   isLoading: false,
@@ -27,7 +28,20 @@ export const apiGetCatalog = createAsyncThunk(
     }
   }
 );
+export const apiGetByLocation = createAsyncThunk(
+  "catalog/apiGetByLocation",
+  async ({ page, location }, thunkApi) => {
+    try {
+      const { data } = await $advertsInstance.get(
+        `/adverts?page=${page}&limit=4&location=${location}`
+      );
 
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
 const catalogSlice = createSlice({
   // Ім'я слайсу
   name: "advertsCatalog",
@@ -53,6 +67,23 @@ const catalogSlice = createSlice({
         state.status = "error";
         state.isLoading = false;
         state.error = action.payload;
+      })
+
+      //Get Data By Location
+      .addCase(apiGetByLocation.pending, (state) => {
+        state.status = "pending";
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(apiGetByLocation.fulfilled, (state, action) => {
+        state.status = "success";
+        state.isLoading = false;
+        state.catalog = [...state.catalog, ...action.payload];
+      })
+      .addCase(apiGetByLocation.rejected, (state, action) => {
+        state.status = "error";
+        state.isLoading = false;
+        state.error = action.payload;
       }),
 });
 // Редюсер слайсу
@@ -73,10 +104,14 @@ const favoritesSlice = createSlice({
         ({ data }) => data._id !== action.payload
       );
     },
+    filterByLocation(state, action) {
+      state.location = action.payload;
+    },
   },
 });
 
 // Генератори екшенів
-export const { addFavorite, deleteFavorite } = favoritesSlice.actions;
+export const { addFavorite, deleteFavorite, filterByLocation } =
+  favoritesSlice.actions;
 // Редюсер слайсу
 export const favoritesReducer = favoritesSlice.reducer;

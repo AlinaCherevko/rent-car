@@ -1,27 +1,43 @@
 //import React from "react";
+import Select from "react-select";
 import { PiTelevisionSimple } from "react-icons/pi";
 import { LuWind } from "react-icons/lu";
 import { TbToolsKitchen2 } from "react-icons/tb";
 import { TbAutomaticGearbox } from "react-icons/tb";
 import { LuShowerHead } from "react-icons/lu";
+import { useDispatch, useSelector } from "react-redux";
+import { selectDataCatalog } from "../../store/catalogSlice.selectors";
 
 import css from "./Filter.module.css";
+import { filterByLocation } from "../../store/catalogSlice";
 
 const Filter = () => {
-  const onSelectClick = (e) => {
-    const { value } = e.currentTarget;
-    console.log(value);
+  const dispatch = useDispatch();
+  const catalogData = useSelector(selectDataCatalog);
+  const uniqueLocations = {};
+
+  catalogData.forEach(({ location }) => {
+    uniqueLocations[location] = true;
+  });
+
+  const arrayUnicLocation = Object.keys(uniqueLocations);
+  //console.log(arrayUnicLocation);
+  const onSelectClick = (selectedOption) => {
+    console.log(selectedOption.value);
+    dispatch(filterByLocation(selectedOption.value));
   };
   return (
     <div className={css.filter}>
       <p className={css.location}>Location</p>
-      <select className={css.selector} onChange={onSelectClick}>
-        <option className={css.option}> Select location</option>
-
-        {/* {genres.map(({ id, name }) => (
-          <option value={id}>{name}</option>
-        ))} */}
-      </select>
+      <Select
+        className={css.selector}
+        onChange={onSelectClick}
+        options={arrayUnicLocation.map((location) => ({
+          value: location,
+          label: location,
+        }))}
+        placeholder="Select location.."
+      />
       <p className={css.filters}>Filters</p>
       <h2 className={css.title}>Vehicle equipment</h2>
       <ul className={css.btnList}>
