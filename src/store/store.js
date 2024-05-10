@@ -16,7 +16,7 @@ import storage from "redux-persist/lib/storage";
 const favoritesConfig = {
   key: "favorites",
   storage,
-  whitelist: ["favorites", "location"],
+  whitelist: ["favorites"],
 };
 
 export const store = configureStore({
